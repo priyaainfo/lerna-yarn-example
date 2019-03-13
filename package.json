@@ -1,0 +1,39 @@
+{
+  "name": "lerna-yarn-example",
+  "description": "Example to demonstrate Lerna and Yarn Workspaces concepts",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Priya Palaniselvaraj",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "jest",
+    "del-dist": "lerna exec --parallel -- del-cli dist",
+    "prebuild": "yarn del-dist",
+    "build": "lerna exec -- babel src -d dist --ignore test.js",
+    "start": "node packages/weather-app/dist/weather-app"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^23.0.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "del-cli": "^1.1.0",
+    "jest": "^23.1.0",
+    "lerna": "^2.11.0"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    },
+    "collectCoverage": true
+  }
+}
